@@ -165,7 +165,7 @@
                     if(senha.length <8 ){
                         var span = document.getElementById('erro_senha');
                             span.innerHTML = "Senha não pode ter menos de 8 Dígitos";
-                    }else{
+                    }else if(senha == "cityslicka"){
                         axios.post('https://reqres.in/api/login', {
                         "email": email,
                         "password": senha})
@@ -178,6 +178,9 @@
                             var span = document.getElementById('erro_senha');
                             span.innerHTML = "E-mail ou Senha incorretos";
                         }); 
+                    }else{
+                        var span = document.getElementById('erro_senha');
+                            span.innerHTML = "E-mail ou Senha incorretos";
                     }
                 })
         </script>
