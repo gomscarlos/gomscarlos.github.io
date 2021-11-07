@@ -1,4 +1,3 @@
-@import 'animate.css';
 @font-face {
     font-family: 'Spotify';
     src: url('CircularSpotifyTxT-Black.ttf');
@@ -48,6 +47,10 @@ a {
     margin-left: 2px;
 }
 
+.header_nav_sumir{
+    display: none;
+}
+
 .header_nav ul{
     display: flex;
     text-decoration: none;
@@ -84,7 +87,6 @@ a {
 }
 
 .container_body {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,6 +94,10 @@ a {
     margin: 0;
     flex-direction: column;
     min-height: 846px;
+}
+
+.container_body_sumir {
+    display: none;
 }
 
 .container_body h1 {
@@ -148,6 +154,223 @@ a {
     background-color: #3ddd75;
 }
 
+/*Modificações*/
+.header_button {
+    display: none;
+    background:transparent; 
+    border:none; 
+    outline:none; 
+    height:10px; 
+    width:10px; 
+    margin-right: 27px;
+    margin-bottom: 13px;
+}
+
+.header_button_sumir {
+    display: none;
+}
+
+.barrinha2 {
+    display: flex;
+    content: '';
+    width: 22px;
+    height: 3.5px;
+    background: white;  
+    margin-bottom: 4px;
+    border-radius: 10px;
+}
+
+.bottom_desconectar {
+    display: flex;
+    background:transparent; 
+    border:none; 
+    outline:none; 
+    margin-right: 30px;
+}
+
+.a {
+    color: white;
+    font-size: 15px;
+}
+
+.bottom_desconectar a:hover{
+    color: #1ED760;
+ }
+
+
+.bottom_desconectar_sumir{
+    display: none;
+}
+
+.container_body_div_sumir{
+    display: none;
+}
+
+.container_body_div {
+   display: flex;
+   background-color: white;
+   width: 110%;
+   height: 150vh;
+   position: absolute;
+   justify-content: center;
+}
+
+.container_body_div h3{
+   display: flex;
+   color: black;
+   margin-top: 20px;
+}
+
+.container_body_div h4{
+   margin-top: 20px;
+   margin-left: 120px;
+   color: black;
+}
+
+.container_body_div_inputText{
+   display: flex;
+   width: 400px;
+   height: 40px;
+   margin-top: 10px;
+   text-indent: 15px;
+   font-size: 20px;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.container_body_div_inputText_sen{
+   display: flex;
+   width: 400px;
+   height: 40px;
+   margin-top: 10px;
+   text-indent: 15px;
+   font-size: 20px;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+.bottom_submit_entrar {
+   font-family: sans-serif;
+   font-size: 14px;
+   font-weight: bold;
+
+   background: #08963a;
+   border-radius: 500px;
+
+   width: 220px;
+   height: 45px;
+
+   border: none;
+   display: flex;
+   align-items: center;
+   text-align: center;
+   letter-spacing: 2px;
+   margin-left: 90px;
+   margin-top: 20px;
+
+   justify-content: center;
+
+   color: white;
+}
+
+.bottom_submit_entrar:hover {
+   background: #19b450;
+}
+
+.barrinha_form {
+   display: flex;
+   content: '';
+   width: 400px;
+   height: 1px;
+   background: grey;  
+   margin-bottom: 4px;
+   border-radius: 10px;
+   margin-top: 10px;
+}
+
+.bottom_fechar {
+   font-family: sans-serif;
+   font-size: 14px;
+   font-weight: bold;
+
+   background: white;
+   border-radius: 500px;
+
+   width: 150px;
+   height: 40px;
+
+   display: flex;
+   align-items: center;
+   text-align: center;
+   letter-spacing: 2px;
+   margin-top: 30px;
+   margin-left: 125px;
+
+   justify-content: center;
+
+   color: grey;
+}
+
+.bottom_fechar:hover {
+   background-color:black;
+   color: white;
+   border: none;
+}
+
+.div_logado{
+    display: flex;
+    justify-content: center;
+
+}
+
+.div_logado label {
+    color: #1ED760;
+    font-size: 17px;
+}
+
+.div_logado h1{
+    display: block;
+    width: 400px;
+    margin-bottom: 40px;
+    text-align: center;
+    align-items: center;
+}
+
+.div_logado input {
+    width: 100%;
+    font-size: 17px;
+    height: 25px;
+    margin-bottom: 20px;
+    text-indent: 15px;
+}
+
+.div_logado a{
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #1ED760;
+    border-radius: 500px;
+
+    width: 200px;
+    height: 45px;
+
+    border: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 0 0 40px 90px;
+    justify-content: center;
+
+    color: white;
+}
+
+.div_logado a:hover {
+    transform: scale(1.05);  
+    background-color: #3ddd75;
+}
+
+.div_logado_sumir{
+    display: none;
+}
+
 @media screen and (max-width: 410px) {
     body {
         height: 150vh;
@@ -162,6 +385,10 @@ a {
         display: flex;
         background: black;
         justify-content: center;
+    }
+
+    .header_button{
+        display: block;
     }
 
     .container_header{
@@ -179,8 +406,8 @@ a {
     }
 
          
-    .header_nav ul{
-        display: flex;
+    .header_nav ul {
+        display: none;
         text-decoration: none;
         font-size: 0px;
     }
@@ -241,6 +468,58 @@ a {
     margin-top: -5px;
     }
 
+    .container_body_div {
+        background-color: white;
+        width: 100%;
+        height: 125vh;
+        position: absolute;
+        justify-content: center;
+        margin-top: 100px;
+    }
+
+    .container_body_div h3{
+        font-size: 13px;
+    }
+
+    .container_body_div h4{
+        margin-left: 80px;
+        font-size: 13px;
+    }
+
+    .container_body_div label{
+        font-size: 13px;
+    }
+    
+    .container_body_div_inputText{
+        width: 280px;
+        height: 30px;
+        margin-top: 1px;
+        text-indent: 15px;
+        font-size: 15px;
+    }
+
+    .container_body_div_inputText_sen{
+        width: 280px;
+        height: 30px;
+        margin-top: 1px;
+        text-indent: 15px;
+        font-size: 15px;
+    }
+    
+    .bottom_submit_entrar {
+        width: 170px;
+        height: 40px;
+        margin-left: 60px;
+    }
+
+    .barrinha_form {
+        width: 300px;
+    }
+
+    .bottom_fechar {
+        margin-left: 72px;
+    }
+
     .bottom_spotify {
         font-family: sans-serif;
         font-size: 13px;
@@ -264,6 +543,31 @@ a {
         justify-content: center;
     
         color: #2941AB;
+    }
+
+    #div_logado {
+        margin-left: 20px;
+    }
+
+    #titulo_logado {
+        font-size: 25px;
+        width: 300px;
+    }
+
+    #artista {
+        width: 85%;
+    }
+
+    #musica {
+        width: 85%;
+    }
+
+    #letra_musica {
+        font-size: 10px;
+    }
+
+    #botton_pesquisar{
+        margin-left: 35px;
     }
 }
 
@@ -284,6 +588,10 @@ a {
         justify-content: center;
     }
 
+    .header_button{
+        display: block;
+    }
+
     .container_header{
         display: flex;
         justify-content: space-between;
@@ -300,7 +608,7 @@ a {
 
          
     .header_nav ul{
-        display: flex;
+        display: none;
         text-decoration: none;
         font-size: 0px;
     }
@@ -361,6 +669,67 @@ a {
     margin-top: -5px;
     }
 
+    .container_body_div {
+        background-color: white;
+        width: 100%;
+        height: 125vh;
+        position: absolute;
+        justify-content: center;
+        margin-top: 100px;
+    }
+
+    .container_body_div h3{
+        font-size: 15px;
+    }
+
+    .container_body_div h4{
+        margin-left: 137px;
+        font-size: 15px;
+    }
+
+    .container_body_div label{
+        font-size: 15px;
+    }
+    
+    .container_body_div_inputText{
+        width: 350px;
+        height: 30px;
+        margin-top: 1px;
+        text-indent: 15px;
+        font-size: 15px;
+    }
+    
+    .container_body_div_inputText_sen{
+        width: 350px;
+        height: 30px;
+        margin-top: 1px;
+        text-indent: 15px;
+        font-size: 15px;
+    }
+
+    .bottom_submit_entrar {
+        width: 180px;
+        height: 45px;
+        margin-left: 110px;
+    }
+  
+    .bottom_cadastrar{
+        font-size: 12px;
+
+        width: 300px;
+        height: 40px;
+        margin-left: 50px;
+    }
+ 
+    .bottom_fechar {
+        font-size: 12px;
+
+        width: 150px;
+        height: 40px;
+
+        margin-left: 130px;
+    }
+
     .bottom_spotify {
         font-family: sans-serif;
         font-size: 13px;
@@ -385,6 +754,22 @@ a {
     
         color: #2941AB;
     }
+
+    #titulo_logado {
+        font-size: 25px;
+    }
+
+    #artista {
+        width: 90%;
+    }
+
+    #musica {
+        width: 90%;
+    }
+
+    #letra_musica {
+        font-size: 13px;
+    }
 }
 
 /* Tablet */
@@ -402,7 +787,6 @@ a {
         text-decoration: none;
     }
     
-
     .container_header{
         display: flex;
         justify-content: space-between;
@@ -451,6 +835,15 @@ a {
     width: 390px;
     justify-content: center;
     text-align: center;
+    }
+
+    .container_body_div {
+        background-color: white;
+        width: 100%;
+        height: 112vh;
+        position: absolute;
+        justify-content: center;
+        
     }
 
     .bottom_spotify {

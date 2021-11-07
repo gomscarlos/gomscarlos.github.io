@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />
         <link rel="icon" href="image/logo.png" type="image/icon">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
 
     <body>
@@ -30,10 +31,18 @@
                         <li class="entrar"><a href="#">Entrar</a></li>
                     </ul>
                 </nav>
+                <button id = "header_button" class="header_button">
+                    <span class="barrinha2"></span>
+                    <span class="barrinha2"></span>
+                    <span class="barrinha2"></span>
+                </button>
+                <button  id = "bt_desc" class = "bottom_desconectar_sumir">
+                    <a class="a" href="index.html">Desconectar</a>
+                </button>
             </div>
         </header>
 
-        <div class="container_body">
+        <div id ="container_body" class = "container_body">
             <div>
                 <h1>Escutar muda tudo</h1>
             </div>
@@ -42,8 +51,135 @@
                 <div class="bottom_spotify">BAIXE O SPOTIFY FREE</div>
                 <div></div>
             </a>
+            <div id="div_entrar"class="container_body_div_sumir">
+                <form>
+                    <h3>Para continuar, faça login no Spotify</h3><br>
+                    <label>Endereço de e-mail ou nome de usuário</label>
+                    <input type="text" id="nome_usuario" class="container_body_div_inputText">
+                    <span id = "erro_usuario" style="color: red;"></span><br><br>
+                    <label>Senha</label>
+                    <input type="password" id="senha" class="container_body_div_inputText_sen">
+                    <span id = "erro_senha" style="color: red;"></span><br><br>
+                    <a class = "bottom_submit_entrar">ENTRAR</a>
+                    <span class="barrinha_form"></span>
+                    <button id="bottom_voltar"class="bottom_fechar">VOLTAR</button>
+                </form>
+            </div>
         </div>
-        
+        <div id = "div_logado" class = "div_logado_sumir">
+            <form>
+                <h1 id = "titulo_logado">Procure a letra de sua música Favorita</h1>
+                <label>Nome do Artista</label>
+                <input type="text" id="artista"><br>
+                <label>Nome da Música</label>
+                <input type="text" id="musica">
+                <a id="botton_pesquisar">BUSCAR</a>
+                <h2 id="titulo_musica" style="margin-bottom: 10px;"></h2>
+                <p id="letra_musica"></p>
+            </form>
+        </div>
+        <script type="text/javascript" charset="utf-8">
+            if(localStorage.token != null){
+                document.getElementsByClassName("header_nav")[0].className = "header_nav_sumir"; 
+                document.getElementById('bt_desc').className = "bottom_desconectar";
+                document.querySelector('body').style.backgroundColor = "grey";
+                document.querySelector('body').style.backgroundImage = "none";
+                document.getElementById("container_body").className = "container_body_sumir";
+                document.getElementById("header_button").className = "header_button_sumir";
+                document.getElementById('div_logado').className = "div_logado";
+            };
+            
+            document.getElementById('botton_pesquisar')
+                .addEventListener('click', async () => {
+                    var artista = document.getElementById('artista').value.trim(),
+                        musica = document.getElementById('musica').value.trim(),
+                        p = document.getElementById('letra_musica'),
+                        h2 = document.getElementById('titulo_musica');
+                    
+                    const response = await axios.get("https://api.vagalume.com.br/search.php"
+                        + "?art=" + artista
+                        + "&mus=" + musica,
+                        + "&apikey={key}");
+                    
+                    h2.innerText = "";
+                    p.innerText = "";   
+                    if(response.data.type == "notfound" || response.data.type == "song_notfound"){
+                        h2.innerHTML = "Música Não Encontrada..."
+                    }else{
+                        var letra = response.data.mus[0].text.replace(/(\r\n|\r|\n)/g, '<br>');
+                        h2.innerHTML = musica;
+                        p.innerHTML = letra;     
+                    }                                
+            });
 
+            document.getElementById('bt_desc')
+                .addEventListener('click', function () {
+                    localStorage.removeItem('token');
+                    this.className = "bottom_desconectar_sumir" 
+            });
+
+            document.getElementsByClassName('entrar')[0]
+                .addEventListener('click', function () {
+                    document.getElementById("div_entrar").className = "container_body_div";
+            });
+
+            document.getElementById("bottom_voltar")
+                .addEventListener('click', function (){
+                    document.getElementById("div_entrar").className = "container_body_div_sumir";
+            });
+
+            document.getElementById('header_button')
+                .addEventListener('click', function () {
+                    document.getElementById("div_entrar").className = "container_body_div";
+            });
+
+            document.getElementById('nome_usuario')
+                .addEventListener('keyup', function (){
+                    var span = document.getElementById('erro_usuario');
+                    if(this.value == "")
+                        span.innerHTML = "Por Favor insira um E-mail"
+                    else
+                        span.innerText = ""; 
+            });
+
+            document.getElementById('senha')
+                .addEventListener('keyup', function (){
+                    var span = document.getElementById('erro_senha');
+                    if(this.value == ""){
+                        span.innerHTML = "Por Favor insira uma senha"
+                    }else if(this.value.length < 8 && this.value.length > 0){
+                        span.innerHTML = "A senha deve ter mais de 8 dígitos";
+                    }else{
+                        span.innerText = ""; 
+                    }
+            });
+
+            document.getElementsByClassName('bottom_submit_entrar')[0]
+                .addEventListener('click', function () {
+                    var email = document.getElementById('nome_usuario').value,
+                        senha = document.getElementById('senha').value;
+
+                    //"cityslicka"
+                    //"eve.holt@reqres.in"
+
+                    if(senha.length <8 ){
+                        var span = document.getElementById('erro_senha');
+                            span.innerHTML = "Senha não pode ter menos de 8 Dígitos";
+                    }else{
+                        axios.post('https://reqres.in/api/login', {
+                        "email": email,
+                        "password": senha})
+                        .then(function (resposta) {
+                            var token = resposta.data.token;
+                            localStorage.setItem('token', token);
+                            location.reload();
+                        })
+                        .catch (function (error) {
+                            var span = document.getElementById('erro_senha');
+                            span.innerHTML = "E-mail ou Senha incorretos";
+                        }); 
+                    }
+                })
+        </script>
     </body>
 </html>
