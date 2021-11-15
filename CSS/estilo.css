@@ -225,6 +225,10 @@ a {
     display: none;
 }
 
+.bt_search_user:hover {
+    color: #1ED760;
+}
+
 .container_pesquisar_user {
     display: flex;
     background-color: white;
