@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="estilo.css" type="text/css">
+    </head>
+    <body>
+        <div id="div_entrar"class="container_body_div">
+                <form action="users" method="post" accept-charset="utf-8">
+                    <h3>Inscreva-se grátis e comece a curtir</h3><br>
+                    <label>Qual é o seu e-email?</label>
+                    <input type="text" name="nome_usuario" class="container_body_div_inputText" value=""
+                    required="required">
+                    <p><span id = "erro_usuario" style="color: red;">{{erro}}{{erroEmail}}</span></p><br><br>
+                    <label>Crie uma senha</label>
+                    <input type="password" name="senha" class="container_body_div_inputText_sen" value=""
+                    required="required">
+                    <span id = "erro_senha" style="color: red;">{{erroSenha}}</span><br><br>
+                    <input type="submit" class = "bottom_submit_entrar" value="CADASTRAR">
+                    <span class="barrinha_form"></span>
+                    <a id="bottom_voltar"class="bottom_fechar" href="/">VOLTAR</a>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

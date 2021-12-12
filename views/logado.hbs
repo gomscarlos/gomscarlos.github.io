@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="estilo.css" type="text/css"> 
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body style="background-image: none; background-color: grey">
+        <header>
+            <div class="container_header">
+
+                <div class="header_logo_spotfy">
+                    <a href="#">
+                        <img src="Spotify_Logo_White.png" alt="logo spotify">
+                    </a>
+                </div>
+                <button  id = "bt_pub" class = "bottom_desconectar_sumir">
+                    <a class="a">Publicar conteúdo</a>
+                </button>
+                <button  id = "bt_desc" class = "bottom_desconectar">
+                    <a class="a" href="/">Desconectar</a>
+                </button>
+                <button  id = "bt_voltar" class = "bottom_desconectar_sumir">
+                    <a class="a" href="/buscar">Voltar</a>
+                </button>
+        </header>
+                        
+         <div id = "div_logado" class = "div_logado">
+            <form action="pesquisar" method="get" accept-charset="utf-8">
+                <h1 id = "titulo_logado">Procure a letra de sua música Favorita</h1>
+                <label>Nome do Artista</label>
+                <input type="text" name="artista" class="div_logado_input" required="required"><br>
+                <label>Nome da Música</label>
+                <input type="text" name="musica" class="div_logado_input" required="required">
+                <input type="submit" id="botton_pesquisar" class="div_logado_submit" value="BUSCAR">
+                <h2 id="titulo_musica" style="margin-bottom: 10px;">{{musica}}{{erro}}</h2>
+                <p id="letra_musica">{{letra}}</p>
+            </form>
+        </div>
+        <div id="div_publicar" class="div_publicar_sumir">
+            <form>
+                <h1 id = "titulo_pub">Informações da Música</h1>
+                <label>Artista/Banda</label><br>
+                <input type="text" id="pub_artista"><br>
+                <label>Música</label><br>
+                <input type="text" id="pub_musica"><br>
+                <label>Letra</label><br>
+                <textarea id="letra_musica" class="textarea" rows="80" cols="40"></textarea><br>
+                <span id="erro_pub" style="color: red;"></span><br>
+                <a id="botton_publicar">PUBLICAR</a>
+            </form>
+        </div>
+        <script>
+            if(localStorage.token != null){
+                document.getElementById('bt_pub').className = 'bottom_desconectar';
+            }
+
+            document.getElementById('bt_pub')
+                .addEventListener('click', function(){
+                    document.getElementById('div_logado').className = "div_logado_sumir";
+                    document.getElementById('div_publicar').className = "div_publicar";
+                    this.className = "bottom_desconectar_sumir";
+                    document.getElementById("bt_desc").className = "bottom_desconectar_sumir";
+                    document.getElementById("bt_voltar").className = "bottom_desconectar";
+                })
+
+            document.getElementById('bt_desc')
+                .addEventListener('click', function () {
+                    if(localStorage.token != null){
+                        localStorage.removeItem('token');
+                    }
+            });
+
+            document.getElementById("botton_publicar")
+                .addEventListener('click', async () =>{
+                    const artista = document.getElementById("pub_artista").value,
+                          musica = document.getElementById("pub_musica").value,
+                          letra = document.getElementsByClassName("textarea")[0].value,
+                          span = document.getElementById('erro_pub');
+
+                    if(artista == "" || musica == "" || letra == ""){
+                        span.innerHTML = "Por favor preencha os dados corretamente novamente";
+                    }else{
+                        try{
+                            const response = await axios.post('./publicar', {
+                                artista: artista,
+                                musica: musica,
+                                letra: letra
+                            });
+                        }catch(e){
+                            span.innerHTML = "Dados inválidos";
+                        }
+                    }
+                });
+        </script>
+    </body>
+</html>
