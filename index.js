@@ -112,5 +112,4 @@ app.post('/users', async (req,res) =>{
     }
 });
 
-
-http.createServer(app).listen(8000);
+app.listen(3000);
