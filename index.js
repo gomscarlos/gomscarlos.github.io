@@ -112,4 +112,7 @@ app.post('/users', async (req,res) =>{
     }
 });
 
-app.listen(3000);
+var port_number = process.env.PORT || 3000;
+app.listen(port_number, () => {
+    console.log("Listening on port" + port_number);
+});
